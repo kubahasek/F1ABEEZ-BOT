@@ -1,0 +1,28 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+    provider             = "mysql"
+    url                  = env("DATABASE_URL")
+    referentialIntegrity = "prisma"
+}
+
+model Channels {
+    channelName String
+    channelId   Int    @unique
+    serverId    Int
+}
+
+model TierLeads {
+    tierName String
+    serverId Int    @unique
+    userId   Int
+}
+
+model Roles {
+    roleName String
+    roleId   Int    @unique
+    serverId Int
+}
