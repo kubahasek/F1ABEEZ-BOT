@@ -10,19 +10,26 @@ datasource db {
 }
 
 model Channels {
-    channelName String
-    channelId   Int    @unique
-    serverId    Int
+    channelName String @unique
+    channelId   String
+    serverId    String
 }
 
 model TierLeads {
     tierName String
-    serverId Int    @unique
-    userId   Int
+    serverId String @unique
+    userId   String
 }
 
 model Roles {
     roleName String
-    roleId   Int    @unique
-    serverId Int
+    roleId   String @unique
+    serverId String
+}
+
+model Warnings {
+    warningId Int    @id @default(autoincrement())
+    Reason    String
+    serverId  String
+    userId    String
 }
