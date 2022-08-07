@@ -18,5 +18,3 @@ const client = new Client({
 ready(client);
 interactionCreate(client);
 client.login(token);
-
-console.log(client);
