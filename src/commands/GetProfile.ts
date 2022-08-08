@@ -7,7 +7,7 @@ import {
 } from "discord.js";
 import { Error } from "../utils/Error";
 import { Command } from "../types/Command";
-import { GetProfile, Profile } from "../utils/Notion";
+import { GetProfile } from "../utils/Notion";
 import { log } from "../utils/Logger";
 
 export const GetProfileCommand: Command = {
@@ -29,17 +29,8 @@ export const GetProfileCommand: Command = {
           interaction.options.data[0].value.toString()
         );
 
-        let embed = new EmbedBuilder()
-          .setTitle(interaction.options.data[0].value.toString())
-          .setColor(16236412)
-          .addFields(
-            { name: "Tier", value: profile.tier },
-            { name: "Team", value: profile.team },
-            { name: "F1 Points", value: profile.pointsF1.toString() },
-            { name: "Penalty Points", value: profile.penaltyPoints.toString() }
-          );
         await interaction.followUp({
-          embeds: [embed],
+          embeds: [profile],
         });
       } catch (err) {
         if (err instanceof Object) {

@@ -4,14 +4,7 @@ import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
-export type Profile = {
-  pointsF1: number;
-  tier: string;
-  penaltyPoints: number;
-  team: string;
-};
-
-export async function GetProfile(gamertag: string): Promise<Profile> {
+export async function GetProfile(gamertag: string) {
   try {
     if (process.env.profileDatabaseID) {
       const response = (await notion.databases.query({
@@ -47,7 +40,16 @@ export async function GetProfile(gamertag: string): Promise<Profile> {
         })) as any;
         team = team.results[0].title.plain_text;
         penaltyPoints = parseInt(penaltyPoints.property_item.rollup.number);
-        return { pointsF1: points, tier, team, penaltyPoints };
+        let embed = new EmbedBuilder()
+          .setTitle(gamertag)
+          .setColor(16236412)
+          .addFields(
+            { name: "Tier", value: tier },
+            { name: "Team", value: team },
+            { name: "F1 Points", value: points.toString() },
+            { name: "Penalty Points", value: penaltyPoints.toString() }
+          );
+        return embed;
       } else {
         throw new Error("Profile not found");
       }
