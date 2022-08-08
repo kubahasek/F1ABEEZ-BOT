@@ -3,10 +3,12 @@ import { Warn } from "./commands/Warn";
 import { Command } from "./types/Command";
 import { ChannelName } from "./commands/ChannelName";
 import { GetProfileCommand } from "./commands/GetProfile";
+import { GetAppealsCommand } from "./commands/GetAppeals";
 
 export const Commands: Command[] = [
   Warn,
   SetChannel,
   ChannelName,
   GetProfileCommand,
+  GetAppealsCommand,
 ];
