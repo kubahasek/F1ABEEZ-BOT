@@ -5,10 +5,10 @@ import {
   ApplicationCommandOptionType,
   EmbedBuilder,
 } from "discord.js";
-import { ErrorEmbed } from "../utils/Error";
+import { Error } from "../utils/Error";
 import { Command } from "../types/Command";
 import { GetProfile, Profile } from "../utils/Notion";
-import { type } from "os";
+import { log } from "../utils/Logger";
 
 export const GetProfileCommand: Command = {
   name: "getprofile",
@@ -42,15 +42,24 @@ export const GetProfileCommand: Command = {
           embeds: [embed],
         });
       } catch (err) {
-        if (err instanceof Error) console.error(err.message);
-        else console.error(String(err));
-        const errEmbed = ErrorEmbed(
-          interaction.options.data[0].value.toString(),
-          "There was en error getting your profile. Read the gamertag and make sure it's correct. If you think this is a mistake, please contact the admins!"
-        );
-        await interaction.followUp({
-          embeds: [errEmbed],
-        });
+        if (err instanceof Object) {
+          log.error(err);
+          const errEmbed = Error(
+            interaction.options.data[0].value.toString(),
+            "There was en error getting your profile. Read the gamertag and make sure it's correct. If you think this is a mistake, please contact the admins!",
+            err as Error
+          );
+          await interaction.followUp({
+            embeds: [errEmbed],
+          });
+        } else {
+          log.error(err);
+          await interaction.followUp({
+            content:
+              "There was an error. Please contact the admins and screenshot this message. Error: " +
+              String(err),
+          });
+        }
       }
     }
   },
