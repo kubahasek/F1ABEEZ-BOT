@@ -12,32 +12,30 @@ export type Profile = {
 export async function GetProfile(gamertag: string): Promise<Profile> {
   try {
     if (process.env.profileDatabaseID) {
-      const response = await notion.databases.query({
+      const response = (await notion.databases.query({
         database_id: process.env.profileDatabaseID,
         filter: {
           property: "Gamertag",
           title: { equals: gamertag },
         },
-      });
+      })) as any;
       if (response.results.length > 0) {
-        const profile = (await notion.pages.retrieve({
-          page_id: response.results[0].id,
-        })) as any;
         let points = (await notion.pages.properties.retrieve({
           page_id: response.results[0].id,
-          property_id: profile.properties["RU:Current F1 Points"].id,
+          property_id:
+            response.results[0].properties["RU:Current F1 Points"].id,
         })) as any;
         let tier = (await notion.pages.properties.retrieve({
           page_id: response.results[0].id,
-          property_id: profile.properties["Current F1 Tier"].id,
+          property_id: response.results[0].properties["Current F1 Tier"].id,
         })) as any;
         let penaltyPoints = (await notion.pages.properties.retrieve({
           page_id: response.results[0].id,
-          property_id: profile.properties["Penalty Points"].id,
+          property_id: response.results[0].properties["Penalty Points"].id,
         })) as any;
         let team = (await notion.pages.properties.retrieve({
           page_id: response.results[0].id,
-          property_id: profile.properties["Team"].id,
+          property_id: response.results[0].properties["Team"].id,
         })) as any;
         points = parseInt(points.property_item.rollup.number);
         tier = tier.multi_select[0].name;
