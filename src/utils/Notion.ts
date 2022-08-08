@@ -1,4 +1,6 @@
+import { EmbedBuilder } from "@discordjs/builders";
 import { Client } from "@notionhq/client";
+import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -48,6 +50,85 @@ export async function GetProfile(gamertag: string): Promise<Profile> {
         return { pointsF1: points, tier, team, penaltyPoints };
       } else {
         throw new Error("Profile not found");
+      }
+    } else {
+      throw new Error("Profile database ID not found in environment variables");
+    }
+  } catch (err) {
+    throw new Error("An error occured " + err);
+  }
+}
+
+export async function GetAppeals(gamertag: string) {
+  try {
+    if (process.env.appealsDatabaseId) {
+      const response = await notion.databases.query({
+        database_id: process.env.appealsDatabaseId,
+        filter: {
+          or: [
+            {
+              property: "Appealed By",
+              rich_text: { contains: gamertag },
+            },
+            {
+              property: "GamerTag(s) involved",
+              rich_text: {
+                contains: gamertag,
+              },
+            },
+          ],
+        },
+      });
+      let embed = new EmbedBuilder()
+        .setTitle(gamertag + "'s appeals")
+        .setColor(16236412);
+      let fields: Array<{ name: string; value: string }> = new Array();
+      if (response.results.length > 0) {
+        const appeals = response.results;
+        await Promise.all(
+          appeals.map(async (a: any) => {
+            await Promise.allSettled([
+              notion.pages.properties.retrieve({
+                page_id: a.id,
+                property_id: a.properties["Status"].id,
+              }) as any,
+              notion.pages.properties.retrieve({
+                page_id: a.id,
+                property_id: a.properties["GamerTag(s) involved"].id,
+              }) as any,
+              notion.pages.properties.retrieve({
+                page_id: a.id,
+                property_id: a.properties["AP-Case Number"].id,
+              }) as any,
+            ]).then((results) => {
+              if (
+                results[0].status === "fulfilled" &&
+                results[1].status === "fulfilled" &&
+                results[2].status === "fulfilled"
+              ) {
+                let status = results[0].value.select.name;
+                let driversInvolved =
+                  results[1].value.results[0].rich_text.plain_text;
+                let caseNumber = results[2].value.results[0].title.plain_text;
+                let url = `[LINK](https://f1abeez.com/${a.url.substring(22)})`;
+                fields.push({
+                  name: `${caseNumber} - ${status}`,
+                  value: `${gamertag} vs ${driversInvolved} ${url}`,
+                });
+              }
+            });
+          })
+        ).then(() => {
+          embed.addFields(fields);
+          return embed;
+        });
+        return embed;
+      } else {
+        embed.addFields({
+          name: "None",
+          value: "No appeals were found for this gamertag",
+        });
+        return embed;
       }
     } else {
       throw new Error("Profile database ID not found in environment variables");
