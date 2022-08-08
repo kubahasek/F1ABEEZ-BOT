@@ -11,6 +11,7 @@ import {
 import { Command } from "../types/Command";
 import { db } from "../prisma/Client";
 import GetChannel from "../utils/GetChannel";
+import { log } from "../utils/Logger";
 
 export const Warn: Command = {
   name: "warn",
@@ -75,7 +76,7 @@ export const Warn: Command = {
         await interaction.followUp({
           content: `There was an error while running this command: ${err}. Please screenshot this and report this to the Admins. Thank you!`,
         });
-        console.error(err);
+        log.error(err);
         return;
       }
       await db.warnings.create({

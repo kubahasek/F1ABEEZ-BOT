@@ -6,7 +6,6 @@ import {
 } from "discord.js";
 import { Command } from "../types/Command";
 import { db } from "../prisma/Client";
-import { log } from "console";
 
 export const SetChannel: Command = {
   name: "setchannel",

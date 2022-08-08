@@ -1,5 +1,6 @@
 import { CommandInteraction, Client, BaseInteraction } from "discord.js";
 import { Commands } from "../Commands";
+import { log } from "../utils/Logger";
 
 export default (client: Client): void => {
   client.on("interactionCreate", async (interaction: BaseInteraction) => {
@@ -21,10 +22,11 @@ const handleSlashCommand = async (
     interaction.followUp({
       content: "An error has occurred! Please report this to the admins",
     });
-    console.error("An error has occured while handling a slash command");
+    log.error("An error has occured while handling a slash command");
     return;
   }
 
   await interaction.deferReply();
+  log.info(`Ran command ${slashCommand.name} for ${interaction.user.username}`);
   slashCommand.run(client, interaction);
 };
