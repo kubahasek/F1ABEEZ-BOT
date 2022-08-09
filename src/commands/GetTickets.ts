@@ -33,7 +33,7 @@ export const GetTicketsCommand: Command = {
           log.error(err);
           const errEmbed = Error(
             interaction.options.data[0].value.toString(),
-            "There was en error getting the appeals for your profile. Read the gamertag and make sure it's correct. If you think this is a mistake, please contact the admins!",
+            "There was en error getting the tickets for your profile. Read the gamertag and make sure it's correct. If you think this is a mistake, please contact the admins!",
             err as Error
           );
           await interaction.followUp({
