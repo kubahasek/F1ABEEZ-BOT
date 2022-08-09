@@ -4,6 +4,7 @@ import { Command } from "./types/Command";
 import { ChannelName } from "./commands/ChannelName";
 import { GetProfileCommand } from "./commands/GetProfile";
 import { GetAppealsCommand } from "./commands/GetAppeals";
+import { GetTicketsCommand } from "./commands/GetTickets";
 
 export const Commands: Command[] = [
   Warn,
@@ -11,4 +12,5 @@ export const Commands: Command[] = [
   ChannelName,
   GetProfileCommand,
   GetAppealsCommand,
+  GetTicketsCommand,
 ];
