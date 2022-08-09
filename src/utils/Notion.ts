@@ -102,20 +102,30 @@ export async function GetAppeals(gamertag: string) {
                 page_id: a.id,
                 property_id: a.properties["AP-Case Number"].id,
               }) as any,
+              notion.pages.properties.retrieve({
+                page_id: a.id,
+                property_id: a.properties["Appealed By"].id,
+              }) as any,
             ]).then((results) => {
               if (
                 results[0].status === "fulfilled" &&
                 results[1].status === "fulfilled" &&
-                results[2].status === "fulfilled"
+                results[2].status === "fulfilled" &&
+                results[3].status === "fulfilled"
               ) {
                 let status = results[0].value.select.name;
                 let driversInvolved =
                   results[1].value.results[0].rich_text.plain_text;
-                let caseNumber = results[2].value.results[0].title.plain_text;
+                let caseNumber =
+                  results[2].value.results.length > 0
+                    ? results[2].value.results[0].title.plain_text
+                    : "Appeal number not assigned";
+                let appealedBy =
+                  results[3].value.results[0].rich_text.plain_text;
                 let url = `[LINK](https://f1abeez.com/${a.url.substring(22)})`;
                 fields.push({
                   name: `${caseNumber} - ${status}`,
-                  value: `${gamertag} vs ${driversInvolved} ${url}`,
+                  value: `${appealedBy} vs ${driversInvolved} ${url}`,
                 });
               }
             });
