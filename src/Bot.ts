@@ -1,4 +1,4 @@
-import { Client } from "discord.js";
+import { Client, GatewayIntentBits, Partials } from "discord.js";
 import dotenv from "dotenv";
 import interactionCreate from "./listeners/interactionCreate";
 import ready from "./listeners/ready";
@@ -13,7 +13,8 @@ if (!token) {
 }
 
 const client = new Client({
-  intents: [],
+  intents: [GatewayIntentBits.DirectMessages],
+  partials: [Partials.Channel],
 });
 
 ready(client);
