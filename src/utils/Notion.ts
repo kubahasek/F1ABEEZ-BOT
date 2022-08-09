@@ -248,3 +248,84 @@ export async function GetTickets(gamertag: string) {
     throw new Error("An error occured" + err);
   }
 }
+
+export async function GetTicket(ticketId: string) {
+  try {
+    if (process.env.incidentDatabaseId) {
+      const response = (await notion.databases.query({
+        database_id: process.env.incidentDatabaseId,
+        filter: {
+          property: "Case Number",
+          title: {
+            contains: ticketId,
+          },
+        },
+      })) as any;
+      let embed = new EmbedBuilder()
+        .setTitle("Ticket no. " + ticketId)
+        .setColor(16236412);
+      if (response.results.length > 0) {
+        const result = response.results[0];
+
+        let status = (await notion.pages.properties.retrieve({
+          page_id: result.id,
+          property_id: result.properties["Status"].id,
+        })) as any;
+        let driversInvolved = (await notion.pages.properties.retrieve({
+          page_id: result.id,
+          property_id:
+            result.properties[
+              "GamerTag(s) of Driver(s) involved incident (N/A for penalties)"
+            ].id,
+        })) as any;
+        let description = (await notion.pages.properties.retrieve({
+          page_id: result.id,
+          property_id: result.properties["Description"].id,
+        })) as any;
+        let actionTaken = (await notion.pages.properties.retrieve({
+          page_id: result.id,
+          property_id: result.properties["Action(s) Taken"].id,
+        })) as any;
+        let reportedBy = (await notion.pages.properties.retrieve({
+          page_id: result.id,
+          property_id: result.properties["Reported By"].id,
+        })) as any;
+
+        status = status.select.name;
+        driversInvolved = driversInvolved.results[0].rich_text.plain_text;
+        reportedBy = reportedBy.results[0].rich_text.plain_text;
+        description = description.results[0].rich_text.plain_text;
+        actionTaken =
+          actionTaken.results.length > 0
+            ? actionTaken.results[0].rich_text.plain_text
+            : "undefined";
+        let url = `https://f1abeez.com/${result.url.substring(22)}`;
+        embed.addFields(
+          { name: "Status", value: status },
+          { name: "Ticket Number", value: ticketId, inline: true },
+          {
+            name: "Drivers Involved",
+            value: `${reportedBy} vs ${driversInvolved}`,
+            inline: true,
+          },
+          { name: "Description", value: description },
+          { name: "Action taken", value: actionTaken }
+        );
+        embed.setURL(url);
+        return embed;
+      } else {
+        embed.addFields({
+          name: "None",
+          value: "No ticket for this number was found",
+        });
+        return embed;
+      }
+    } else {
+      throw new Error(
+        "Incident database ID not found in environment variables"
+      );
+    }
+  } catch (err) {
+    throw new Error("An error occured" + err);
+  }
+}
