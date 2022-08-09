@@ -42,13 +42,9 @@ const handleButton = async (
   client: Client,
   interaction: ButtonInteraction
 ): Promise<void> => {
-  console.log(interaction.customId);
-
   const buttonHandler = buttonHandlers.find(
     (c) => c.customId === interaction.customId
   );
-  console.log(buttonHandler);
-
   if (!buttonHandler) {
     await interaction.reply({
       content: "An error has occurred! Please report this to the admins",
