@@ -8,6 +8,7 @@ import { GetTicketsCommand } from "./commands/GetTickets";
 import { GetTicketCommand } from "./commands/TicketDetail";
 import { IncidentReportMenu } from "./commands/IncidentReportMenu";
 import { AppealReportMenu } from "./commands/AppealReportMenu";
+import { SuggestionMenu } from "./commands/SuggestionMenu";
 
 export const Commands: Command[] = [
   Warn,
@@ -19,4 +20,5 @@ export const Commands: Command[] = [
   GetTicketCommand,
   IncidentReportMenu,
   AppealReportMenu,
+  SuggestionMenu,
 ];
