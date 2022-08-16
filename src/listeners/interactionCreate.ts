@@ -6,6 +6,7 @@ import {
 } from "discord.js";
 import { buttonHandlers } from "../ButtonHandlers";
 import { Commands } from "../Commands";
+import { Error } from "../utils/Error";
 import { log } from "../utils/Logger";
 
 export default (client: Client): void => {
@@ -14,7 +15,35 @@ export default (client: Client): void => {
       interaction.isChatInputCommand() ||
       interaction.isContextMenuCommand()
     ) {
-      await handleSlashCommand(client, interaction);
+      try {
+        await handleSlashCommand(client, interaction);
+      } catch (err) {
+        const errEmbed = Error(
+          "Error",
+          `There was an error running your command ${interaction.commandName}`,
+          err as Error
+        );
+        if (interaction.replied) {
+          await interaction.followUp({ embeds: [errEmbed] });
+        } else {
+          await interaction.reply({ embeds: [errEmbed] });
+        }
+      }
+    } else if (interaction.isButton()) {
+      try {
+        await handleButton(client, interaction);
+      } catch (err) {
+        const errEmbed = Error(
+          "Error",
+          `There was an error running your command ${interaction.customId}`,
+          err as Error
+        );
+        if (interaction.replied) {
+          await interaction.followUp({ embeds: [errEmbed] });
+        } else {
+          await interaction.reply({ embeds: [errEmbed] });
+        }
+      }
     } else if (interaction.isButton()) {
       await handleButton(client, interaction);
     }

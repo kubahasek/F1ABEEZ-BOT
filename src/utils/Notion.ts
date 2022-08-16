@@ -3,6 +3,7 @@ import { Client } from "@notionhq/client";
 import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 import { Incident } from "../types/SubmissionTypes";
 import dotenv from "dotenv";
+import { Appeal } from "../types/Appeal";
 
 dotenv.config();
 let notion: Client;
@@ -432,5 +433,106 @@ export async function SubmitIncident(incident: Incident) {
     }
   } else {
     throw new Error("Incident Database ID not found in env vars");
+  }
+}
+
+export async function SubmitAppeal(appeal: Appeal) {
+  if (process.env.appealsDatabaseId) {
+    const response = await notion.pages.create({
+      parent: {
+        type: "database_id",
+        database_id: process.env.appealsDatabaseId,
+      },
+      properties: {
+        "Case Number": {
+          rich_text: [
+            {
+              text: {
+                content: appeal.caseNumber,
+              },
+            },
+          ],
+        },
+        Status: {
+          select: {
+            name: "In Progress",
+            color: "pink",
+          },
+        },
+        "Additional Evidence": {
+          rich_text: [
+            {
+              text: {
+                content: appeal.evidence,
+              },
+            },
+          ],
+        },
+        "Appealed By": {
+          rich_text: [
+            {
+              text: {
+                content: appeal.gamertag,
+              },
+            },
+          ],
+        },
+        Reason: {
+          rich_text: [
+            {
+              text: {
+                content: appeal.reason,
+              },
+            },
+          ],
+        },
+        "GamerTag(s) involved": {
+          rich_text: [
+            {
+              text: {
+                content: appeal.involvedDriver,
+              },
+            },
+          ],
+        },
+        "Additional Info": {
+          rich_text: [
+            {
+              text: {
+                content: appeal.additionalInfo,
+              },
+            },
+          ],
+        },
+        "Time Reported": {
+          date: {
+            start: new Date().toISOString(),
+          },
+        },
+        "Submitted Through": {
+          select: {
+            name: "F1ABEEZ Bot",
+            color: "pink",
+          },
+        },
+      },
+    });
+    if (response.id) {
+      return new EmbedBuilder()
+        .setColor(16236412)
+        .setTitle("Success")
+        .addFields({
+          name: "✅",
+          value: "Your appeal has been succesfully submitted!",
+        });
+    } else {
+      return new EmbedBuilder().setColor(16236412).setTitle("Error").addFields({
+        name: "❌",
+        value:
+          "There's been an error submitting your appeal! Please report this to the admins.",
+      });
+    }
+  } else {
+    throw new Error("Appeal Database ID not found in env vars");
   }
 }
