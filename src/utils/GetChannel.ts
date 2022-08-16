@@ -8,8 +8,7 @@ export default async function GetChannel(
 ): Promise<Channel | undefined> {
   const channel = await db.channels.findFirst({
     where: {
-      channelName: { equals: channelName },
-      serverId: { equals: serverId },
+      channelName: { equals: channelName + serverId },
     },
   });
   if (channel != null) {
