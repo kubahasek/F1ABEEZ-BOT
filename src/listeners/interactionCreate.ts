@@ -53,7 +53,7 @@ const handleButton = async (
     return;
   }
 
-  await interaction.deferReply();
+  await interaction.deferReply({ ephemeral: true });
   log.info(`Ran button ${buttonHandler.name} for ${interaction.user.username}`);
   buttonHandler.run(client, interaction);
 };

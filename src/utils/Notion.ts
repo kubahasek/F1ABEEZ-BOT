@@ -1,8 +1,16 @@
 import { EmbedBuilder } from "@discordjs/builders";
 import { Client } from "@notionhq/client";
 import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
+import { Incident } from "../types/SubmissionTypes";
+import dotenv from "dotenv";
 
-const notion = new Client({ auth: process.env.NOTION_TOKEN });
+dotenv.config();
+let notion: Client;
+if (process.env.NOTION_TOKEN) {
+  notion = new Client({ auth: process.env.NOTION_TOKEN });
+} else {
+  throw new Error("Notion token not found");
+}
 
 export async function GetProfile(gamertag: string) {
   try {
@@ -327,5 +335,102 @@ export async function GetTicket(ticketId: string) {
     }
   } catch (err) {
     throw new Error("An error occured" + err);
+  }
+}
+
+export async function SubmitIncident(incident: Incident) {
+  if (process.env.incidentDatabaseId) {
+    const response = await notion.pages.create({
+      parent: {
+        type: "database_id",
+        database_id: process.env.incidentDatabaseId,
+      },
+      properties: {
+        Description: {
+          rich_text: [
+            {
+              text: {
+                content: incident.description,
+              },
+            },
+          ],
+        },
+        Status: {
+          select: {
+            name: "In Progress",
+            color: "red",
+          },
+        },
+        "Tier/Division": {
+          select: {
+            name: incident.tier,
+          },
+        },
+        "Video Evidence (other video sources are allowed)": {
+          rich_text: [
+            {
+              text: {
+                content: incident.evidence,
+              },
+            },
+          ],
+        },
+        "Lap of incident/penalty": {
+          rich_text: [
+            {
+              text: {
+                content: incident.lap,
+              },
+            },
+          ],
+        },
+        "Reported By": {
+          rich_text: [
+            {
+              text: {
+                content: incident.gamertag,
+              },
+            },
+          ],
+        },
+        "GamerTag(s) of Driver(s) involved incident (N/A for penalties)": {
+          rich_text: [
+            {
+              text: {
+                content: incident.involvedDriver,
+              },
+            },
+          ],
+        },
+        "Time Reported": {
+          date: {
+            start: new Date().toISOString(),
+          },
+        },
+        "Submitted through": {
+          select: {
+            name: "F1ABEEZ Bot",
+            color: "pink",
+          },
+        },
+      },
+    });
+    if (response.id) {
+      return new EmbedBuilder()
+        .setColor(16236412)
+        .setTitle("Success")
+        .addFields({
+          name: "✅",
+          value: "Your ticket has been succesfully submitted!",
+        });
+    } else {
+      return new EmbedBuilder().setColor(16236412).setTitle("Error").addFields({
+        name: "❌",
+        value:
+          "There's been an error submitting your ticket! Please report this to the admins.",
+      });
+    }
+  } else {
+    throw new Error("Incident Database ID not found in env vars");
   }
 }
