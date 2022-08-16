@@ -13,7 +13,11 @@ if (!token) {
 }
 
 const client = new Client({
-  intents: [GatewayIntentBits.DirectMessages],
+  intents: [
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildIntegrations,
+  ],
   partials: [Partials.Channel],
 });
 
