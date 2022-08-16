@@ -16,7 +16,10 @@ export const SetChannel: Command = {
       type: ApplicationCommandOptionType.String,
       name: "channelname",
       description: "Select which channel do you want to set up",
-      choices: [{ name: "Warnings Channel", value: "warningsChannel" }],
+      choices: [
+        { name: "Warnings Channel", value: "warningsChannel" },
+        { name: "Incident Log channel", value: "reportLog" },
+      ],
       required: true,
     },
     {
