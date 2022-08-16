@@ -2,6 +2,7 @@ import {
   ButtonInteraction,
   Client,
   ComponentType,
+  EmbedBuilder,
   Message,
   SelectMenuInteraction,
 } from "discord.js";
@@ -10,6 +11,8 @@ import { TierMenu } from "../selectMenus/TierMenu";
 import { ButtonHandler } from "../types/ButtonHandler";
 import { SubmitIncident } from "../utils/Notion";
 import { Error } from "../utils/Error";
+import GetChannel from "../utils/GetChannel";
+import { log } from "../utils/Logger";
 
 const messages = {
   gamertag: {
@@ -154,6 +157,43 @@ export const IncidentReportButtonHandler: ButtonHandler = {
                                                       });
                                                     }
                                                   );
+                                                  const reportEmbed =
+                                                    new EmbedBuilder()
+                                                      .setColor(16236412)
+                                                      .setTitle(
+                                                        "⚠️ A new ticket has been reported! ⚠"
+                                                      )
+                                                      .addFields(
+                                                        {
+                                                          name: "Tier",
+                                                          value: incident.tier,
+                                                        },
+                                                        {
+                                                          name: "Drivers Involved",
+                                                          value: `${incident.gamertag} vs ${incident.involvedDriver}`,
+                                                        }
+                                                      );
+                                                  if (interaction.guildId)
+                                                    try {
+                                                      const logChannel =
+                                                        GetChannel(
+                                                          client,
+                                                          "reportLog",
+                                                          interaction.guildId
+                                                        ).then((channel) => {
+                                                          if (
+                                                            channel?.isTextBased()
+                                                          ) {
+                                                            channel.send({
+                                                              embeds: [
+                                                                reportEmbed,
+                                                              ],
+                                                            });
+                                                          }
+                                                        });
+                                                    } catch (err) {
+                                                      log.error(err);
+                                                    }
                                                 } catch (err) {
                                                   const embed = Error(
                                                     "Incident Reports",
