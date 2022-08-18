@@ -3,6 +3,7 @@ import {
   Client,
   ApplicationCommandType,
   ApplicationCommandOptionType,
+  PermissionFlagsBits,
 } from "discord.js";
 import { Command } from "../types/Command";
 import { db } from "../prisma/Client";
@@ -29,6 +30,10 @@ export const SetChannel: Command = {
       description: "Select the channel you want to use",
       required: true,
     },
+  ],
+  defaultMemberPermissions: [
+    PermissionFlagsBits.Administrator,
+    PermissionFlagsBits.ManageGuild,
   ],
   run: async (client: Client, interaction: CommandInteraction) => {
     if (
