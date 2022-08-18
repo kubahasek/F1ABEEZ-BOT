@@ -22,8 +22,8 @@ model TierLeads {
 }
 
 model Roles {
-    roleName String
-    roleId   String @unique
+    roleName String @unique
+    roleId   String
     serverId String
 }
 
