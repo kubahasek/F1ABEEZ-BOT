@@ -10,6 +10,7 @@ import { IncidentReportMenu } from "./commands/IncidentReportMenu";
 import { AppealReportMenu } from "./commands/AppealReportMenu";
 import { SuggestionMenu } from "./commands/SuggestionMenu";
 import { SetRole } from "./commands/SetRole";
+import { AcademyMsg } from "./commands/AcademyMessage";
 
 export const Commands: Command[] = [
   Warn,
@@ -23,4 +24,5 @@ export const Commands: Command[] = [
   AppealReportMenu,
   SuggestionMenu,
   SetRole,
+  AcademyMsg,
 ];
