@@ -74,6 +74,10 @@ const handleButton = async (
   const buttonHandler = buttonHandlers.find(
     (c) => c.customId === interaction.customId
   );
+  if (interaction.customId === "yes" || interaction.customId === "no") {
+    await interaction.deferUpdate();
+    return;
+  }
   if (!buttonHandler) {
     await interaction.reply({
       content: "An error has occurred! Please report this to the admins",
