@@ -6,11 +6,12 @@ import {
 } from "discord.js";
 import { Command } from "../types/Command";
 import GetRole from "../utils/GetRole";
+import GetTierLead from "../utils/GetTierLead";
 import { log } from "../utils/Logger";
 
-export const Ready: Command = {
-  name: "ready",
-  description: "Sends the ready up message to tier drivers",
+export const Lobby: Command = {
+  name: "lobby",
+  description: "Sends the lobby is open message.",
   type: ApplicationCommandType.ChatInput,
   options: [
     {
@@ -41,9 +42,14 @@ export const Ready: Command = {
           interaction.options.data[0].value.toString() + "res",
           interaction.guild.id
         );
-        if (tierRole && tierresRole) {
+        const lobbyHost = await GetTierLead(
+          client,
+          interaction.options.data[0].value.toString(),
+          interaction.guild.id
+        );
+        if (tierRole && tierresRole && lobbyHost) {
           await interaction.followUp({
-            content: `<@&${tierRole.id}> <@&${tierresRole.id}>\n**Ready Up!**/n/n`,
+            content: `<@&${tierRole.id}> <@&${tierresRole.id}>\n**Lobby is now open!**\nPlease join off <@${lobbyHost.user.id}>\nGamertag is - ${lobbyHost.gamertag}\nPlease put a message in this chat if you need an invite.\nIf you have a qualifying ban, make sure to serve it!\nWhile waiting why not check out our website - F1ABEEZ.com`,
           });
         }
       } catch (err) {

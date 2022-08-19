@@ -8,9 +8,9 @@ import { Command } from "../types/Command";
 import GetRole from "../utils/GetRole";
 import { log } from "../utils/Logger";
 
-export const Ready: Command = {
-  name: "ready",
-  description: "Sends the ready up message to tier drivers",
+export const Race: Command = {
+  name: "race",
+  description: "Sends the race ready up message to tier drivers",
   type: ApplicationCommandType.ChatInput,
   options: [
     {
@@ -43,7 +43,7 @@ export const Ready: Command = {
         );
         if (tierRole && tierresRole) {
           await interaction.followUp({
-            content: `<@&${tierRole.id}> <@&${tierresRole.id}>\n**Ready Up!**/n/n`,
+            content: `<@&${tierRole.id}> <@&${tierresRole.id}>\n**Ready up for the race start please!**\n\nGood luck out there everyone, see you after the race`,
           });
         }
       } catch (err) {
