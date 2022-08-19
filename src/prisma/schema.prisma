@@ -16,9 +16,10 @@ model Channels {
 }
 
 model TierLeads {
-    tierName String
-    serverId String @unique
+    tierName String @unique
+    serverId String
     userId   String
+    gamertag String
 }
 
 model Roles {
