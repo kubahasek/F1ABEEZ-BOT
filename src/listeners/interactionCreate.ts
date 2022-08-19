@@ -62,7 +62,7 @@ const handleSlashCommand = async (
     log.error("An error has occured while handling a slash command");
     return;
   }
-  await interaction.deferReply();
+  await interaction.deferReply({ ephemeral: slashCommand.ephemeral });
   log.info(`Ran command ${slashCommand.name} for ${interaction.user.username}`);
   await slashCommand.run(client, interaction);
 };
@@ -86,7 +86,7 @@ const handleButton = async (
     return;
   }
 
-  await interaction.deferReply({ ephemeral: true });
+  await interaction.deferReply({ ephemeral: buttonHandler.ephemeral });
   log.info(`Ran button ${buttonHandler.name} for ${interaction.user.username}`);
   buttonHandler.run(client, interaction);
 };
