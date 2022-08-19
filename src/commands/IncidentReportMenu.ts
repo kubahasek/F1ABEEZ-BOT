@@ -16,6 +16,7 @@ export const IncidentReportMenu: Command = {
   type: ApplicationCommandType.ChatInput,
   defaultMemberPermissions: [PermissionFlagsBits.Administrator],
   options: [],
+  ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     const embed = new EmbedBuilder()
       .setColor(16236412)

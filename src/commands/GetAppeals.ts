@@ -21,6 +21,7 @@ export const GetAppealsCommand: Command = {
       required: true,
     },
   ],
+  ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     if (interaction.options.data[0].value) {
       try {

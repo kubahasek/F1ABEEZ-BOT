@@ -32,6 +32,7 @@ export const Warn: Command = {
     },
   ],
   defaultMemberPermissions: PermissionFlagsBits.Administrator,
+  ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     const user = interaction.options.data[0].user;
     const reason = interaction.options.data[1].value;

@@ -15,10 +15,10 @@ import GetChannel from "../utils/GetChannel";
 export const SuggestionButtonHandler: ButtonHandler = {
   name: "suggestionbuttonhandler",
   customId: "suggestionbutton",
+  ephemeral: true,
   run: async (client: Client, interaction: ButtonInteraction) => {
     await interaction.followUp({
       content: `Please follow the bot to your DMs to submit your suggestion! <@${interaction.user.id}>`,
-      ephemeral: false,
     });
     const filter = (m: Message) => m.author.id === interaction.user.id;
     const componentFilter = (i: ButtonInteraction) => {

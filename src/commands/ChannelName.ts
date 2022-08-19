@@ -60,6 +60,7 @@ export const ChannelName: Command = {
       required: true,
     },
   ],
+  ephemeral: false,
   defaultMemberPermissions: PermissionFlagsBits.ManageGuild,
   run: async (client: Client, interaction: CommandInteraction) => {
     let returnValue: string = "";

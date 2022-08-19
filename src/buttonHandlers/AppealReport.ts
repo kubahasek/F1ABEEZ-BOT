@@ -42,10 +42,10 @@ const messages = {
 export const AppealReportButtonHandler: ButtonHandler = {
   name: "appealReport",
   customId: "appealreportbutton",
+  ephemeral: true,
   run: async (client: Client, interaction: ButtonInteraction) => {
     await interaction.followUp({
       content: `Please follow the bot to your DMs to submit your appeal! <@${interaction.user.id}>`,
-      ephemeral: false,
     });
     const filter = (m: Message) => m.author.id === interaction.user.id;
     const componentFilter = (i: SelectMenuInteraction) => {

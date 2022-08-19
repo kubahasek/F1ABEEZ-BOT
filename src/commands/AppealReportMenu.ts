@@ -14,6 +14,7 @@ export const AppealReportMenu: Command = {
   description: "Sends the appeal report menu",
   type: ApplicationCommandType.ChatInput,
   options: [],
+  ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     const embed = new EmbedBuilder()
       .setColor(16236412)

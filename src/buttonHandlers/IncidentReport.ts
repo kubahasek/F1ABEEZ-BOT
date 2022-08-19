@@ -40,10 +40,10 @@ const messages = {
 export const IncidentReportButtonHandler: ButtonHandler = {
   name: "incidentReport",
   customId: "incidentreportbutton",
+  ephemeral: true,
   run: async (client: Client, interaction: ButtonInteraction) => {
     await interaction.followUp({
       content: `Please follow the bot to your DMs to submit your incident! <@${interaction.user.id}>`,
-      ephemeral: false,
     });
     const filter = (m: Message) => m.author.id === interaction.user.id;
     const componentFilter = (i: SelectMenuInteraction) => {

@@ -15,6 +15,7 @@ export const AcademyMsg: Command = {
   type: ApplicationCommandType.ChatInput,
   defaultMemberPermissions: [PermissionFlagsBits.ManageMessages],
   options: [],
+  ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     try {
       if (interaction.guildId) {
