@@ -3,4 +3,5 @@ export type Channels =
   | "leavingChannel"
   | "reportLog"
   | "warningsChannel"
-  | "suggestionLog";
+  | "suggestionLog"
+  | "stewardsAnnoucements";

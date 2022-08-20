@@ -15,6 +15,7 @@ import { Ready } from "./commands/Ready";
 import { SetTierLead } from "./commands/SetTierLead";
 import { Lobby } from "./commands/Lobby";
 import { Race } from "./commands/Race";
+import { StewardsDescisions } from "./commands/StewardsDescisions";
 
 export const Commands: Command[] = [
   Warn,
@@ -33,4 +34,5 @@ export const Commands: Command[] = [
   SetTierLead,
   Lobby,
   Race,
+  StewardsDescisions,
 ];
