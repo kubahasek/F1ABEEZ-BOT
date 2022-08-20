@@ -60,7 +60,7 @@ export const Warn: Command = {
           await interaction.followUp({ embeds: [embed] });
           let warningsChannel = await GetChannel(
             client,
-            "warningsChannel" + interaction.guildId,
+            "warningsChannel",
             interaction.guildId
           );
           if (warningsChannel && warningsChannel.isTextBased()) {
@@ -96,7 +96,7 @@ export const Warn: Command = {
 
       let warningsChannel = await GetChannel(
         client,
-        "warningsChannel" + interaction.guildId,
+        "warningsChannel",
         interaction.guildId
       );
       if (warningsChannel && warningsChannel.isTextBased()) {
