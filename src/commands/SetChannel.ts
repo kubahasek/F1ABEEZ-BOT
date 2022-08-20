@@ -21,6 +21,7 @@ export const SetChannel: Command = {
         { name: "Warnings Channel", value: "warningsChannel" },
         { name: "Incident Log channel", value: "reportLog" },
         { name: "Suggestion Log channel", value: "suggestionLog" },
+        { name: "Leaving Channel", value: "leavingChannel" },
       ],
       required: true,
     },
