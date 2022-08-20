@@ -29,7 +29,11 @@ export const Ready: Command = {
   ],
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
-    if (interaction.options.data[0].value && interaction.guild?.id) {
+    if (
+      interaction.options.data[0].value &&
+      interaction.guild?.id &&
+      interaction.options.data[0].value
+    ) {
       try {
         const tierRole = await GetRole(
           client,
