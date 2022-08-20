@@ -4,7 +4,7 @@ import { Roles } from "../types/Roles";
 
 export default async function GetChannel(
   client: Client,
-  roleName: Roles,
+  roleName: Roles | string,
   serverId: string
 ): Promise<Role | undefined> {
   const role = await db.roles.findFirst({
