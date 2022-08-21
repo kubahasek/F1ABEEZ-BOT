@@ -6,6 +6,7 @@ import {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
+  PermissionFlagsBits,
 } from "discord.js";
 import { Command } from "../types/Command";
 
@@ -14,6 +15,10 @@ export const AppealReportMenu: Command = {
   description: "Sends the appeal report menu",
   type: ApplicationCommandType.ChatInput,
   options: [],
+  defaultMemberPermissions: [
+    PermissionFlagsBits.Administrator,
+    PermissionFlagsBits.ManageGuild,
+  ],
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     const embed = new EmbedBuilder()

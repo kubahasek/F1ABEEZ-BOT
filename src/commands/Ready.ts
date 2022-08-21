@@ -3,6 +3,7 @@ import {
   Client,
   ApplicationCommandType,
   ApplicationCommandOptionType,
+  PermissionFlagsBits,
 } from "discord.js";
 import { Command } from "../types/Command";
 import GetRole from "../utils/GetRole";
@@ -26,6 +27,10 @@ export const Ready: Command = {
       ],
       required: true,
     },
+  ],
+  defaultMemberPermissions: [
+    PermissionFlagsBits.Administrator,
+    PermissionFlagsBits.ManageGuild,
   ],
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
