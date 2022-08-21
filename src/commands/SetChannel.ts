@@ -23,6 +23,7 @@ export const SetChannel: Command = {
         { name: "Suggestion Log channel", value: "suggestionLog" },
         { name: "Leaving Channel", value: "leavingChannel" },
         { name: "Stewards Annoucements", value: "stewardsAnnoucements" },
+        { name: "Welcome Channel", value: "welcomeChannel" },
       ],
       required: true,
     },
