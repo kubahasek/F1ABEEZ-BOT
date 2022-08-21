@@ -24,6 +24,7 @@ export async function GetProfile(gamertag: string) {
         },
       })) as any;
       if (response.results.length > 0) {
+        let embed = new EmbedBuilder().setTitle(gamertag).setColor(16236412);
         let points = (await notion.pages.properties.retrieve({
           page_id: response.results[0].id,
           property_id:
@@ -43,21 +44,32 @@ export async function GetProfile(gamertag: string) {
         })) as any;
         points = parseInt(points.property_item.rollup.number);
         tier = tier.multi_select[0].name;
-        team = (await notion.pages.properties.retrieve({
-          page_id: team.results[0].relation.id,
-          property_id: "title",
-        })) as any;
-        team = team.results[0].title.plain_text;
+        try {
+          team = (await notion.pages.properties.retrieve({
+            page_id: team.results[0].relation.id,
+            property_id: "title",
+          })) as any;
+          team = team.results[0].title.plain_text;
+          embed.addFields({ name: "Team", value: team });
+        } catch {
+          let team = (await notion.pages.properties.retrieve({
+            page_id: response.results[0].id,
+            property_id: response.results[0].properties["Reserve Team"].id,
+          })) as any;
+          team = (await notion.pages.properties.retrieve({
+            page_id: team.results[0].relation.id,
+            property_id: "title",
+          })) as any;
+          team = team.results[0].title.plain_text;
+          embed.addFields({ name: "Team", value: team });
+        }
         penaltyPoints = parseInt(penaltyPoints.property_item.rollup.number);
-        let embed = new EmbedBuilder()
-          .setTitle(gamertag)
-          .setColor(16236412)
-          .addFields(
-            { name: "Tier", value: tier },
-            { name: "Team", value: team },
-            { name: "F1 Points", value: points.toString() },
-            { name: "Penalty Points", value: penaltyPoints.toString() }
-          );
+
+        embed.addFields(
+          { name: "Tier", value: tier },
+          { name: "F1 Points", value: points.toString() },
+          { name: "Penalty Points", value: penaltyPoints.toString() }
+        );
         return embed;
       } else {
         throw new Error("Profile not found");
