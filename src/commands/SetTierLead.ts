@@ -43,7 +43,7 @@ export const SetTierLead: Command = {
       required: true,
     },
   ],
-  ephemeral: false,
+  ephemeral: true,
   run: async (client: Client, interaction: CommandInteraction) => {
     if (
       interaction.options.data[0].value &&
