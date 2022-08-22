@@ -26,7 +26,7 @@ export default (client: Client): void => {
         if (interaction.replied) {
           await interaction.followUp({ embeds: [errEmbed] });
         } else {
-          await interaction.reply({ embeds: [errEmbed] });
+          await interaction.followUp({ embeds: [errEmbed] });
         }
       }
     } else if (interaction.isButton()) {
@@ -41,7 +41,7 @@ export default (client: Client): void => {
         if (interaction.replied) {
           await interaction.followUp({ embeds: [errEmbed] });
         } else {
-          await interaction.reply({ embeds: [errEmbed] });
+          await interaction.followUp({ embeds: [errEmbed] });
         }
       }
     } else if (interaction.isButton()) {
