@@ -17,6 +17,7 @@ import { Lobby } from "./commands/Lobby";
 import { Race } from "./commands/Race";
 import { StewardsDescisions } from "./commands/StewardsDescisions";
 import { Standings } from "./commands/Standings";
+import { ClearChannel } from "./commands/ClearChannel";
 
 export const Commands: Command[] = [
   Warn,
@@ -37,4 +38,5 @@ export const Commands: Command[] = [
   Race,
   StewardsDescisions,
   Standings,
+  ClearChannel,
 ];
