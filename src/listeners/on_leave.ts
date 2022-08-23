@@ -9,7 +9,9 @@ export default (client: Client): void => {
       member.guild.id
     );
     if (leavingChannel && leavingChannel.isTextBased()) {
-      await leavingChannel.send(`**${member.nickname}** has left the server.`);
+      await leavingChannel.send(
+        `**${member.displayName}** has left the server.`
+      );
     }
   });
 };
