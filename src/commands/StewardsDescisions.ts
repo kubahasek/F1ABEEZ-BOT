@@ -4,6 +4,7 @@ import {
   ApplicationCommandType,
   ApplicationCommandOptionType,
   PermissionFlagsBits,
+  PermissionsBitField,
 } from "discord.js";
 import { Command } from "../types/Command";
 import { Error } from "../utils/Error";
@@ -32,7 +33,8 @@ export const StewardsDescisions: Command = {
     },
   ],
   defaultMemberPermissions:
-    PermissionFlagsBits.Administrator | PermissionFlagsBits.KickMembers,
+    PermissionsBitField.Flags.Administrator |
+    PermissionsBitField.Flags.KickMembers,
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     if (

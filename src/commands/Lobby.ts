@@ -4,6 +4,7 @@ import {
   ApplicationCommandType,
   ApplicationCommandOptionType,
   PermissionFlagsBits,
+  PermissionsBitField,
 } from "discord.js";
 import { Command } from "../types/Command";
 import GetRole from "../utils/GetRole";
@@ -30,7 +31,8 @@ export const Lobby: Command = {
     },
   ],
   defaultMemberPermissions:
-    PermissionFlagsBits.Administrator | PermissionFlagsBits.KickMembers,
+    PermissionsBitField.Flags.Administrator |
+    PermissionsBitField.Flags.KickMembers,
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     if (interaction.options.data[0].value && interaction.guild?.id) {

@@ -7,6 +7,7 @@ import {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
+  PermissionsBitField,
 } from "discord.js";
 import { Command } from "../types/Command";
 
@@ -14,7 +15,9 @@ export const IncidentReportMenu: Command = {
   name: "incidentmenu",
   description: "Sends the incident report menu",
   type: ApplicationCommandType.ChatInput,
-  defaultMemberPermissions: [PermissionFlagsBits.Administrator],
+  defaultMemberPermissions:
+    PermissionsBitField.Flags.Administrator |
+    PermissionsBitField.Flags.KickMembers,
   options: [],
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {

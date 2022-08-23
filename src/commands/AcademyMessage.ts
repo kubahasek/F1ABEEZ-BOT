@@ -3,6 +3,7 @@ import {
   Client,
   ApplicationCommandType,
   PermissionFlagsBits,
+  PermissionsBitField,
 } from "discord.js";
 import { Command } from "../types/Command";
 import GetRole from "../utils/GetRole";
@@ -14,7 +15,8 @@ export const AcademyMsg: Command = {
   description: "Sends the academy message!",
   type: ApplicationCommandType.ChatInput,
   defaultMemberPermissions:
-    PermissionFlagsBits.Administrator | PermissionFlagsBits.KickMembers,
+    PermissionsBitField.Flags.Administrator |
+    PermissionsBitField.Flags.KickMembers,
   options: [],
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {

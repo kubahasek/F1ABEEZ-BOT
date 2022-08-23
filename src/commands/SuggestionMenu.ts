@@ -7,6 +7,7 @@ import {
   ButtonBuilder,
   ButtonStyle,
   PermissionFlagsBits,
+  PermissionsBitField,
 } from "discord.js";
 import { Command } from "../types/Command";
 
@@ -16,10 +17,9 @@ export const SuggestionMenu: Command = {
   type: ApplicationCommandType.ChatInput,
   options: [],
   ephemeral: false,
-  defaultMemberPermissions: [
-    PermissionFlagsBits.Administrator,
-    PermissionFlagsBits.ManageGuild,
-  ],
+  defaultMemberPermissions:
+    PermissionsBitField.Flags.Administrator |
+    PermissionsBitField.Flags.KickMembers,
   run: async (client: Client, interaction: CommandInteraction) => {
     const embed = new EmbedBuilder()
       .setColor(16236412)

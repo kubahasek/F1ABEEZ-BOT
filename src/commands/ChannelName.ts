@@ -4,6 +4,7 @@ import {
   ApplicationCommandType,
   ApplicationCommandOptionType,
   PermissionFlagsBits,
+  PermissionsBitField,
 } from "discord.js";
 import { Command } from "../types/Command";
 
@@ -61,7 +62,9 @@ export const ChannelName: Command = {
     },
   ],
   ephemeral: false,
-  defaultMemberPermissions: PermissionFlagsBits.ManageGuild,
+  defaultMemberPermissions:
+    PermissionsBitField.Flags.Administrator |
+    PermissionsBitField.Flags.KickMembers,
   run: async (client: Client, interaction: CommandInteraction) => {
     let returnValue: string = "";
     if (interaction.options.data[0].value) {

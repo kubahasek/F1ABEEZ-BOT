@@ -4,6 +4,7 @@ import {
   ApplicationCommandType,
   ApplicationCommandOptionType,
   PermissionFlagsBits,
+  PermissionsBitField,
 } from "discord.js";
 import { Command } from "../types/Command";
 import { db } from "../prisma/Client";
@@ -35,7 +36,8 @@ export const SetChannel: Command = {
     },
   ],
   defaultMemberPermissions:
-    PermissionFlagsBits.Administrator | PermissionFlagsBits.KickMembers,
+    PermissionsBitField.Flags.Administrator |
+    PermissionsBitField.Flags.KickMembers,
   ephemeral: true,
   run: async (client: Client, interaction: CommandInteraction) => {
     if (

@@ -4,6 +4,7 @@ import {
   ApplicationCommandType,
   PermissionFlagsBits,
   ApplicationCommandOptionType,
+  PermissionsBitField,
 } from "discord.js";
 import { db } from "../prisma/Client";
 import { Command } from "../types/Command";
@@ -13,7 +14,8 @@ export const SetRole: Command = {
   description: "Allows to set differenr roles up",
   type: ApplicationCommandType.ChatInput,
   defaultMemberPermissions:
-    PermissionFlagsBits.Administrator | PermissionFlagsBits.KickMembers,
+    PermissionsBitField.Flags.Administrator |
+    PermissionsBitField.Flags.KickMembers,
   options: [
     {
       type: ApplicationCommandOptionType.String,
