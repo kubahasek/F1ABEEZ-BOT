@@ -24,7 +24,7 @@ export const Standings: Command = {
         { name: "Tier 2", value: "406:667" },
         { name: "Tier 3", value: "4:265" },
         { name: "Tier M", value: "406:1251" },
-        { name: "Tier H", value: "tierH" },
+        // { name: "Tier H", value: "tierH" },
         { name: "Team standings", value: "16:1142" },
       ],
       required: true,
