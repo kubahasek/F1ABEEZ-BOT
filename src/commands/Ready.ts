@@ -30,7 +30,7 @@ export const Ready: Command = {
   ],
   defaultMemberPermissions: [
     PermissionFlagsBits.Administrator,
-    PermissionFlagsBits.ManageGuild,
+    PermissionFlagsBits.KickMembers,
   ],
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {

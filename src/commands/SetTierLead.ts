@@ -14,7 +14,7 @@ export const SetTierLead: Command = {
   type: ApplicationCommandType.ChatInput,
   defaultMemberPermissions: [
     PermissionFlagsBits.Administrator,
-    PermissionFlagsBits.ManageGuild,
+    PermissionFlagsBits.KickMembers,
   ],
   options: [
     {

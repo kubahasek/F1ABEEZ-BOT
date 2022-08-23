@@ -16,7 +16,7 @@ export const AcademyMsg: Command = {
   defaultMemberPermissions: [
     PermissionFlagsBits.ManageMessages,
     PermissionFlagsBits.Administrator,
-    PermissionFlagsBits.ManageGuild,
+    PermissionFlagsBits.KickMembers,
   ],
   options: [],
   ephemeral: false,

@@ -36,7 +36,7 @@ export const SetChannel: Command = {
   ],
   defaultMemberPermissions: [
     PermissionFlagsBits.Administrator,
-    PermissionFlagsBits.ManageGuild,
+    PermissionFlagsBits.KickMembers,
   ],
   ephemeral: true,
   run: async (client: Client, interaction: CommandInteraction) => {

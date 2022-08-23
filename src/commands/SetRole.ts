@@ -14,7 +14,7 @@ export const SetRole: Command = {
   type: ApplicationCommandType.ChatInput,
   defaultMemberPermissions: [
     PermissionFlagsBits.Administrator,
-    PermissionFlagsBits.ManageGuild,
+    PermissionFlagsBits.KickMembers,
   ],
   options: [
     {
