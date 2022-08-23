@@ -16,9 +16,7 @@ export const AppealReportMenu: Command = {
   description: "Sends the appeal report menu",
   type: ApplicationCommandType.ChatInput,
   options: [],
-  defaultMemberPermissions:
-    PermissionsBitField.Flags.Administrator |
-    PermissionsBitField.Flags.KickMembers,
+  defaultMemberPermissions: PermissionsBitField.Flags.KickMembers,
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     const embed = new EmbedBuilder()

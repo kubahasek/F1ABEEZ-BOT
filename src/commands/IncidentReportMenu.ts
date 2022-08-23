@@ -15,9 +15,7 @@ export const IncidentReportMenu: Command = {
   name: "incidentmenu",
   description: "Sends the incident report menu",
   type: ApplicationCommandType.ChatInput,
-  defaultMemberPermissions:
-    PermissionsBitField.Flags.Administrator |
-    PermissionsBitField.Flags.KickMembers,
+  defaultMemberPermissions: PermissionsBitField.Flags.KickMembers,
   options: [],
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {

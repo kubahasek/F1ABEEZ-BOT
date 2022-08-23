@@ -7,6 +7,7 @@ import {
   TextBasedChannel,
   TextChannel,
   PermissionFlagsBits,
+  PermissionsBitField,
 } from "discord.js";
 import { Command } from "../types/Command";
 import { db } from "../prisma/Client";
@@ -31,7 +32,7 @@ export const Warn: Command = {
       required: true,
     },
   ],
-  defaultMemberPermissions: PermissionFlagsBits.Administrator,
+  defaultMemberPermissions: PermissionsBitField.Flags.KickMembers,
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     const user = interaction.options.data[0].user;

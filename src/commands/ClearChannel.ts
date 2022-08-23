@@ -13,9 +13,7 @@ export const ClearChannel: Command = {
   description: "clears the channel",
   type: ApplicationCommandType.ChatInput,
   options: [],
-  defaultMemberPermissions:
-    PermissionsBitField.Flags.Administrator |
-    PermissionsBitField.Flags.KickMembers,
+  defaultMemberPermissions: PermissionsBitField.Flags.KickMembers,
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     let channel = interaction.channelId;

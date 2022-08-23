@@ -13,9 +13,7 @@ export const SetTierLead: Command = {
   name: "settierlead",
   description: "Sets up the tier lead",
   type: ApplicationCommandType.ChatInput,
-  defaultMemberPermissions:
-    PermissionsBitField.Flags.Administrator |
-    PermissionsBitField.Flags.KickMembers,
+  defaultMemberPermissions: PermissionsBitField.Flags.KickMembers,
   options: [
     {
       type: ApplicationCommandOptionType.String,

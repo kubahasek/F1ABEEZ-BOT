@@ -35,9 +35,7 @@ export const SetChannel: Command = {
       required: true,
     },
   ],
-  defaultMemberPermissions:
-    PermissionsBitField.Flags.Administrator |
-    PermissionsBitField.Flags.KickMembers,
+  defaultMemberPermissions: PermissionsBitField.Flags.KickMembers,
   ephemeral: true,
   run: async (client: Client, interaction: CommandInteraction) => {
     if (

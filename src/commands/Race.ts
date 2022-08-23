@@ -29,9 +29,7 @@ export const Race: Command = {
       required: true,
     },
   ],
-  defaultMemberPermissions:
-    PermissionsBitField.Flags.Administrator |
-    PermissionsBitField.Flags.KickMembers,
+  defaultMemberPermissions: PermissionsBitField.Flags.KickMembers,
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     if (interaction.options.data[0].value && interaction.guild?.id) {

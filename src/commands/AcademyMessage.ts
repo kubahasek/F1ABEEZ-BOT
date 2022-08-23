@@ -14,9 +14,7 @@ export const AcademyMsg: Command = {
   name: "academymessage",
   description: "Sends the academy message!",
   type: ApplicationCommandType.ChatInput,
-  defaultMemberPermissions:
-    PermissionsBitField.Flags.Administrator |
-    PermissionsBitField.Flags.KickMembers,
+  defaultMemberPermissions: PermissionsBitField.Flags.KickMembers,
   options: [],
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {

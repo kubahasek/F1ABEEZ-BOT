@@ -62,9 +62,7 @@ export const ChannelName: Command = {
     },
   ],
   ephemeral: false,
-  defaultMemberPermissions:
-    PermissionsBitField.Flags.Administrator |
-    PermissionsBitField.Flags.KickMembers,
+  defaultMemberPermissions: PermissionsBitField.Flags.KickMembers,
   run: async (client: Client, interaction: CommandInteraction) => {
     let returnValue: string = "";
     if (interaction.options.data[0].value) {

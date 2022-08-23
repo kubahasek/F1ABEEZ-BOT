@@ -17,9 +17,7 @@ export const SuggestionMenu: Command = {
   type: ApplicationCommandType.ChatInput,
   options: [],
   ephemeral: false,
-  defaultMemberPermissions:
-    PermissionsBitField.Flags.Administrator |
-    PermissionsBitField.Flags.KickMembers,
+  defaultMemberPermissions: PermissionsBitField.Flags.KickMembers,
   run: async (client: Client, interaction: CommandInteraction) => {
     const embed = new EmbedBuilder()
       .setColor(16236412)
