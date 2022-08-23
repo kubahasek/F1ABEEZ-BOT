@@ -12,10 +12,8 @@ export const SetRole: Command = {
   name: "setrole",
   description: "Allows to set differenr roles up",
   type: ApplicationCommandType.ChatInput,
-  defaultMemberPermissions: [
-    PermissionFlagsBits.Administrator,
-    PermissionFlagsBits.KickMembers,
-  ],
+  defaultMemberPermissions:
+    PermissionFlagsBits.Administrator | PermissionFlagsBits.KickMembers,
   options: [
     {
       type: ApplicationCommandOptionType.String,

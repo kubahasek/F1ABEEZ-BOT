@@ -31,10 +31,8 @@ export const StewardsDescisions: Command = {
       required: true,
     },
   ],
-  defaultMemberPermissions: [
-    PermissionFlagsBits.Administrator,
-    PermissionFlagsBits.KickMembers,
-  ],
+  defaultMemberPermissions:
+    PermissionFlagsBits.Administrator | PermissionFlagsBits.KickMembers,
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     if (

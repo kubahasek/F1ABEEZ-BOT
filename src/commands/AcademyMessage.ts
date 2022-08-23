@@ -13,11 +13,8 @@ export const AcademyMsg: Command = {
   name: "academymessage",
   description: "Sends the academy message!",
   type: ApplicationCommandType.ChatInput,
-  defaultMemberPermissions: [
-    PermissionFlagsBits.ManageMessages,
-    PermissionFlagsBits.Administrator,
-    PermissionFlagsBits.KickMembers,
-  ],
+  defaultMemberPermissions:
+    PermissionFlagsBits.Administrator | PermissionFlagsBits.KickMembers,
   options: [],
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {

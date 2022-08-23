@@ -3,6 +3,7 @@ import {
   Client,
   ApplicationCommandType,
   Message,
+  PermissionFlagsBits,
 } from "discord.js";
 import { Command } from "../types/Command";
 
@@ -11,6 +12,8 @@ export const ClearChannel: Command = {
   description: "clears the channel",
   type: ApplicationCommandType.ChatInput,
   options: [],
+  defaultMemberPermissions:
+    PermissionFlagsBits.Administrator | PermissionFlagsBits.KickMembers,
   ephemeral: false,
   run: async (client: Client, interaction: CommandInteraction) => {
     let channel = interaction.channelId;

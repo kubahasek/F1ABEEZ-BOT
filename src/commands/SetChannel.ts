@@ -34,10 +34,8 @@ export const SetChannel: Command = {
       required: true,
     },
   ],
-  defaultMemberPermissions: [
-    PermissionFlagsBits.Administrator,
-    PermissionFlagsBits.KickMembers,
-  ],
+  defaultMemberPermissions:
+    PermissionFlagsBits.Administrator | PermissionFlagsBits.KickMembers,
   ephemeral: true,
   run: async (client: Client, interaction: CommandInteraction) => {
     if (
