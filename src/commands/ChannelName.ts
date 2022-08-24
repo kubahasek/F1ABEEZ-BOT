@@ -68,7 +68,7 @@ export const ChannelName: Command = {
     if (interaction.options.data[0].value) {
       const channelName = interaction.options.data[0].value.toString();
       for (const char of channelName) {
-        let index = Object.keys(nameDic).indexOf(char);
+        let index = Object.keys(nameDic).indexOf(char.toLowerCase());
         returnValue += Object.values(nameDic)[index];
       }
       await interaction.followUp({ content: "︱" + returnValue });
