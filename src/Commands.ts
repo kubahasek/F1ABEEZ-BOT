@@ -19,6 +19,7 @@ import { StewardsDescisions } from "./commands/StewardsDescisions";
 import { Standings } from "./commands/Standings";
 import { ClearChannel } from "./commands/ClearChannel";
 import { Calendar } from "./commands/Calendar";
+import { Lineups } from "./commands/Lineups";
 
 export const Commands: Command[] = [
   Warn,
@@ -41,4 +42,5 @@ export const Commands: Command[] = [
   Standings,
   ClearChannel,
   Calendar,
+  Lineups,
 ];
