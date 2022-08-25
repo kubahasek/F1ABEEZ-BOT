@@ -2,7 +2,7 @@ import { CommandInteraction, Client, ApplicationCommandType } from "discord.js";
 import { Command } from "../types/Command";
 
 export const Lineups: Command = {
-  name: "Lineups",
+  name: "lineups",
   description: "Responds with a link to the lineups!",
   type: ApplicationCommandType.ChatInput,
   options: [],
