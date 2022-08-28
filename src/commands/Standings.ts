@@ -7,7 +7,7 @@ import {
 } from "discord.js";
 import { Command } from "../types/Command";
 import * as Figma from "figma-api";
-import { Error } from "../utils/Error";
+import { ErrorEmbed } from "../utils/Error";
 import { log } from "../utils/Logger";
 
 export const Standings: Command = {
@@ -43,7 +43,7 @@ export const Standings: Command = {
           format: "png",
         });
         if (image.status) {
-          const errEmbed = Error(
+          const errEmbed = ErrorEmbed(
             "Standings",
             "There was an error getting the standings.",
             new RangeError("Image not found")
@@ -58,12 +58,12 @@ export const Standings: Command = {
         const embed = new EmbedBuilder().setImage(imgLink).setColor(16236412);
         await interaction.followUp({ embeds: [embed] });
       } catch (err) {
-        const errEmbed = Error(
+        const errEmbed = ErrorEmbed(
           "Standings",
           "There was an error getting the standings.",
           err as Error
         );
-        log.error(err);
+        log.error(err as Error);
         await interaction.followUp({ embeds: [errEmbed] });
       }
     }

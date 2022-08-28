@@ -54,7 +54,7 @@ export const Ready: Command = {
           });
         }
       } catch (err) {
-        log.error(err);
+        log.error(err as Error);
       }
     }
   },

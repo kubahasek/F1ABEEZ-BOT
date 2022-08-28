@@ -6,7 +6,7 @@ import {
 } from "discord.js";
 import { buttonHandlers } from "../ButtonHandlers";
 import { Commands } from "../Commands";
-import { Error } from "../utils/Error";
+import { ErrorEmbed } from "../utils/Error";
 import { log } from "../utils/Logger";
 
 export default (client: Client): void => {
@@ -18,7 +18,7 @@ export default (client: Client): void => {
       try {
         await handleSlashCommand(client, interaction);
       } catch (err) {
-        const errEmbed = Error(
+        const errEmbed = ErrorEmbed(
           "Error",
           `There was an error running your command ${interaction.commandName}`,
           err as Error
@@ -33,7 +33,7 @@ export default (client: Client): void => {
       try {
         await handleButton(client, interaction);
       } catch (err) {
-        const errEmbed = Error(
+        const errEmbed = ErrorEmbed(
           "Error",
           `There was an error running your command ${interaction.customId}`,
           err as Error

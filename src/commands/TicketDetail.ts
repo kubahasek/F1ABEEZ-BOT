@@ -5,7 +5,7 @@ import {
   ApplicationCommandOptionType,
   EmbedBuilder,
 } from "discord.js";
-import { Error } from "../utils/Error";
+import { ErrorEmbed } from "../utils/Error";
 import { Command } from "../types/Command";
 import { GetTicket } from "../utils/Notion";
 import { log } from "../utils/Logger";
@@ -36,7 +36,7 @@ export const GetTicketCommand: Command = {
       } catch (err) {
         if (err instanceof Object) {
           log.error(err);
-          const errEmbed = Error(
+          const errEmbed = ErrorEmbed(
             interaction.options.data[0].value.toString(),
             "There was en error getting the ticket you were looking for. Read the gamertag and make sure it's correct. If you think this is a mistake, please contact the admins!",
             err as Error
@@ -45,7 +45,7 @@ export const GetTicketCommand: Command = {
             embeds: [errEmbed],
           });
         } else {
-          log.error(err);
+          log.error(err as Error);
           await interaction.followUp({
             content:
               "There was an error. Please contact the admins and screenshot this message. Error: " +

@@ -6,7 +6,7 @@ import {
 } from "discord.js";
 import { Command } from "../types/Command";
 import { log } from "../utils/Logger";
-import { Error } from "../utils/Error";
+import { ErrorEmbed } from "../utils/Error";
 import * as Figma from "figma-api";
 
 export const Calendar: Command = {
@@ -27,7 +27,7 @@ export const Calendar: Command = {
           format: "png",
         });
         if (image.status) {
-          const errEmbed = Error(
+          const errEmbed = ErrorEmbed(
             "Calendar",
             "There was an error getting the calendar.",
             new RangeError("Image not found")
@@ -39,12 +39,12 @@ export const Calendar: Command = {
         const embed = new EmbedBuilder().setImage(imgLink).setColor(16236412);
         await interaction.followUp({ embeds: [embed] });
       } catch (err) {
-        const errEmbed = Error(
+        const errEmbed = ErrorEmbed(
           "Calendar",
           "There was an error getting the calendar.",
           err as Error
         );
-        log.error(err);
+        log.error(err as Error);
         await interaction.followUp({ embeds: [errEmbed] });
       }
     }
