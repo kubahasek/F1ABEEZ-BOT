@@ -7,7 +7,7 @@ import {
   PermissionsBitField,
 } from "discord.js";
 import { Command } from "../types/Command";
-import { Error } from "../utils/Error";
+import { ErrorEmbed } from "../utils/Error";
 import GetChannel from "../utils/GetChannel";
 
 export const StewardsDescisions: Command = {
@@ -67,7 +67,7 @@ export const StewardsDescisions: Command = {
               });
             }
           } catch (err) {
-            const errorEmb = Error(
+            const errorEmb = ErrorEmbed(
               "Stewards Announcement",
               "There was an error sending the announcement",
               err as Error
@@ -100,7 +100,7 @@ export const StewardsDescisions: Command = {
               });
             }
           } catch (err) {
-            const errorEmb = Error(
+            const errorEmb = ErrorEmbed(
               "Stewards Announcement",
               "There was an error sending the announcement",
               err as Error

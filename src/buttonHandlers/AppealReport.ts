@@ -10,7 +10,7 @@ import { Incident } from "../types/SubmissionTypes";
 import { TierMenu } from "../selectMenus/TierMenu";
 import { ButtonHandler } from "../types/ButtonHandler";
 import { SubmitAppeal, SubmitIncident } from "../utils/Notion";
-import { Error } from "../utils/Error";
+import { ErrorEmbed } from "../utils/Error";
 import GetChannel from "../utils/GetChannel";
 import { log } from "../utils/Logger";
 import { Appeal } from "../types/Appeal";
@@ -194,10 +194,10 @@ export const AppealReportButtonHandler: ButtonHandler = {
                                                         }
                                                       });
                                                   } catch (err) {
-                                                    log.error(err);
+                                                    log.error(err as Error);
                                                   }
                                               } catch (err) {
-                                                const embed = Error(
+                                                const embed = ErrorEmbed(
                                                   "Appeal Report",
                                                   "There's been an error submmitting your appeal. Please report this to the admins",
                                                   err as Error

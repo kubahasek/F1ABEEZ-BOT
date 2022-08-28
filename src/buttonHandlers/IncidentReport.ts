@@ -10,7 +10,7 @@ import { Incident } from "../types/SubmissionTypes";
 import { TierMenu } from "../selectMenus/TierMenu";
 import { ButtonHandler } from "../types/ButtonHandler";
 import { SubmitIncident } from "../utils/Notion";
-import { Error } from "../utils/Error";
+import { ErrorEmbed } from "../utils/Error";
 import GetChannel from "../utils/GetChannel";
 import { log } from "../utils/Logger";
 
@@ -192,10 +192,10 @@ export const IncidentReportButtonHandler: ButtonHandler = {
                                                           }
                                                         });
                                                     } catch (err) {
-                                                      log.error(err);
+                                                      log.error(err as Error);
                                                     }
                                                 } catch (err) {
-                                                  const embed = Error(
+                                                  const embed = ErrorEmbed(
                                                     "Incident Reports",
                                                     "There's been an error submmitting your incident. Please report this to the admins",
                                                     err as Error

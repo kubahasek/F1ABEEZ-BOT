@@ -40,7 +40,7 @@ export const AcademyMsg: Command = {
         });
       }
     } catch (err) {
-      log.error(err);
+      log.error(err as Error);
       await interaction.followUp({
         content: "There was an error, please report this to the admins!",
       });

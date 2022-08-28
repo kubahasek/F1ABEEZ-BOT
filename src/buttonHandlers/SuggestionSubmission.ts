@@ -70,8 +70,6 @@ export const SuggestionButtonHandler: ButtonHandler = {
                     componentType: ComponentType.Button,
                   })
                   .then((btn) => {
-                    console.log("got here");
-
                     if (interaction.guildId) {
                       GetChannel(
                         client,

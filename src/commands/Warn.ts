@@ -78,7 +78,7 @@ export const Warn: Command = {
         await interaction.followUp({
           content: `There was an error while running this command: ${err}. Please screenshot this and report this to the Admins. Thank you!`,
         });
-        log.error(err);
+        log.error(err as Error);
         return;
       }
       await db.warnings.create({

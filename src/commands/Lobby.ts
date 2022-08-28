@@ -56,7 +56,7 @@ export const Lobby: Command = {
           });
         }
       } catch (err) {
-        log.error(err);
+        log.error(err as Error);
       }
     }
   },

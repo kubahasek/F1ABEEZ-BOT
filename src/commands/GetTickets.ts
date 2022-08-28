@@ -7,7 +7,7 @@ import {
 import { Command } from "../types/Command";
 import { GetTickets } from "../utils/Notion";
 import { log } from "../utils/Logger";
-import { Error } from "../utils/Error";
+import { ErrorEmbed } from "../utils/Error";
 
 export const GetTicketsCommand: Command = {
   name: "gettickets",
@@ -32,7 +32,7 @@ export const GetTicketsCommand: Command = {
       } catch (err) {
         if (err instanceof Object) {
           log.error(err);
-          const errEmbed = Error(
+          const errEmbed = ErrorEmbed(
             interaction.options.data[0].value.toString(),
             "There was en error getting the tickets for your profile. Read the gamertag and make sure it's correct. If you think this is a mistake, please contact the admins!",
             err as Error
@@ -41,7 +41,7 @@ export const GetTicketsCommand: Command = {
             embeds: [errEmbed],
           });
         } else {
-          log.error(err);
+          log.error(err as Error);
           await interaction.followUp({
             content:
               "There was an error. Please contact the admins and screenshot this message. Error: " +
