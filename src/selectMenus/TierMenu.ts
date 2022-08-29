@@ -19,6 +19,10 @@ export const TierMenu = new ActionRowBuilder<SelectMenuBuilder>().addComponents(
         value: "Tier 3",
       },
       {
+        label: "Tier H",
+        value: "Tier H",
+      },
+      {
         label: "Tier M",
         value: "Tier M",
       }
