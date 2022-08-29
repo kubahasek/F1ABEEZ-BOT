@@ -16,6 +16,9 @@ exports.TierMenu = new discord_js_1.ActionRowBuilder().addComponents(new builder
     label: "Tier 3",
     value: "Tier 3",
 }, {
+    label: "Tier H",
+    value: "Tier H",
+}, {
     label: "Tier M",
     value: "Tier M",
 }));
