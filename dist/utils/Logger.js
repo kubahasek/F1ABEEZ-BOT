@@ -9,5 +9,6 @@ exports.log = new rollbar_1.default({
     captureUnhandledRejections: true,
     reportLevel: "debug",
     verbose: true,
+    environment: process.env.PRODUCTION === "true" ? "production" : "development",
 });
 //# sourceMappingURL=Logger.js.map
