@@ -36,7 +36,7 @@ jobs:
           avatar-url: "https://octodex.github.com/images/manufacturetocat.png"
           title: "${{ github.workflow }}: {{STATUS}}"
           description: "${{ github.event_name }} trigged this {{STATUS}}!"
-          include-details: "false"
+          include-details: "true"
           color-success: "#4287f5"
           color-failure: "eb4034"
           color-cancelled: "0x42daf5"
