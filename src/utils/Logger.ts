@@ -4,6 +4,6 @@ export const log = new Rollbar({
   accessToken: process.env.ROLLBAR_TOKEN,
   captureUncaught: true,
   captureUnhandledRejections: true,
-  logLevel: "info",
+  reportLevel: "warning",
   verbose: true,
 });
