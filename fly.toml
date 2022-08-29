@@ -1,0 +1,15 @@
+# fly.toml file generated for f1abeez-bot on 2022-08-29T15:52:32+02:00
+
+app = "f1abeez-bot"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[build]
+  builder = "heroku/buildpacks:20"
+
+[env]
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
