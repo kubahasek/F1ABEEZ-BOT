@@ -29,7 +29,7 @@ jobs:
           username: "GITHUB FELLA"
           avatar-url: "https://octodex.github.com/images/manufacturetocat.png"
           title: "${{ github.workflow }}: {{STATUS}}"
-          description: "${{ github.workflow_run.head_commit.message }} trigged this"
+          description: "${{ github.workflow_run.head_commit.message }} triggerd this"
           include-details: "true"
           color-success: "#4287f5"
           color-failure: "eb4034"
