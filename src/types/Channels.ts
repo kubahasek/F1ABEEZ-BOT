@@ -4,4 +4,5 @@ export type Channels =
   | "reportLog"
   | "warningsChannel"
   | "suggestionLog"
-  | "stewardsAnnoucements";
+  | "stewardsAnnoucements"
+  | "michaelaInbox";
