@@ -192,7 +192,10 @@ export const IncidentReportButtonHandler: ButtonHandler = {
                                                           }
                                                         });
                                                     } catch (err) {
-                                                      log.error(err as Error);
+                                                      log.error(
+                                                        err as Error,
+                                                        incident
+                                                      );
                                                     }
                                                 } catch (err) {
                                                   const embed = ErrorEmbed(
