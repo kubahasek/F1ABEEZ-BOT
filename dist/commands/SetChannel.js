@@ -17,6 +17,7 @@ exports.SetChannel = {
                 { name: "Incident Log channel", value: "reportLog" },
                 { name: "Suggestion Log channel", value: "suggestionLog" },
                 { name: "Leaving Channel", value: "leavingChannel" },
+                { name: "Michaela's inbox", value: "michaelaInbox" },
                 { name: "Stewards Annoucements", value: "stewardsAnnoucements" },
                 { name: "Welcome Channel", value: "welcomeChannel" },
             ],

@@ -22,6 +22,7 @@ const Standings_1 = require("./commands/Standings");
 const ClearChannel_1 = require("./commands/ClearChannel");
 const Calendar_1 = require("./commands/Calendar");
 const Lineups_1 = require("./commands/Lineups");
+const ProfilePicRequestMenu_1 = require("./commands/ProfilePicRequestMenu");
 exports.Commands = [
     Warn_1.Warn,
     SetChannel_1.SetChannel,
@@ -44,5 +45,6 @@ exports.Commands = [
     ClearChannel_1.ClearChannel,
     Calendar_1.Calendar,
     Lineups_1.Lineups,
+    ProfilePicRequestMenu_1.ProfilePicRequestMenu,
 ];
 //# sourceMappingURL=Commands.js.map

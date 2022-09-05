@@ -163,7 +163,7 @@ exports.IncidentReportButtonHandler = {
                                                                     });
                                                                 }
                                                                 catch (err) {
-                                                                    Logger_1.log.error(err);
+                                                                    Logger_1.log.error(err, incident);
                                                                 }
                                                         }
                                                         catch (err) {
