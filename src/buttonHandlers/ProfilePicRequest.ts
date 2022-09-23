@@ -92,7 +92,10 @@ export const ProfilePicRequestHandler: ButtonHandler = {
                     .addFields(
                       { name: "Gamertag", value: request.gamertag },
                       { name: "Tier", value: request.tier }
-                    );
+                    )
+                    .setFooter({
+                      text: "Requested by: " + interaction.user.username,
+                    });
                   if (interaction.guildId) {
                     const michaelasInbox = GetChannel(
                       client,
