@@ -70,7 +70,10 @@ exports.ProfilePicRequestHandler = {
                 const requestEmbed = new discord_js_1.EmbedBuilder()
                     .setTitle("New profile picture request!")
                     .setColor(16236412)
-                    .addFields({ name: "Gamertag", value: request.gamertag }, { name: "Tier", value: request.tier });
+                    .addFields({ name: "Gamertag", value: request.gamertag }, { name: "Tier", value: request.tier })
+                    .setFooter({
+                    text: "Requested by: " + interaction.user.username,
+                });
                 if (interaction.guildId) {
                     const michaelasInbox = (0, GetChannel_1.default)(client, "michaelaInbox", interaction.guildId).then((channel) => {
                         if (channel?.isTextBased()) {
