@@ -10,6 +10,7 @@ import {
   PermissionsBitField,
 } from "discord.js";
 import { Command } from "../types/Command";
+import { log } from "src/utils/Logger";
 
 export const IncidentReportMenu: Command = {
   name: "incidentmenu",
@@ -34,7 +35,10 @@ export const IncidentReportMenu: Command = {
       await channel.send({ embeds: [embed], components: [row] });
       interaction.followUp({ content: "Done!", ephemeral: true }).then((msg) =>
         setTimeout(() => {
-          msg.channel.messages.fetch(msg.id).then((msg) => msg.delete());
+          const msgToDel = msg.channel.messages.fetch(msg.id);
+          msgToDel.then((fetched) => {
+            fetched.delete();
+          });
         }, 10000)
       );
     } else {
