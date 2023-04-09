@@ -22,7 +22,10 @@ exports.IncidentReportMenu = {
         if (channel && channel.isTextBased()) {
             await channel.send({ embeds: [embed], components: [row] });
             interaction.followUp({ content: "Done!", ephemeral: true }).then((msg) => setTimeout(() => {
-                msg.channel.messages.fetch(msg.id).then((msg) => msg.delete());
+                const msgToDel = msg.channel.messages.fetch(msg.id);
+                msgToDel.then((fetched) => {
+                    fetched.delete();
+                });
             }, 10000));
         }
         else {
