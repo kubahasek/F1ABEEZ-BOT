@@ -36,7 +36,9 @@ export const ProfilePicRequestMenu: Command = {
       await channel.send({ embeds: [embed], components: [row] });
       interaction.followUp({ content: "Done!", ephemeral: true }).then((msg) =>
         setTimeout(() => {
-          msg.channel.messages.fetch(msg.id).then((msg) => msg.delete());
+          msg.channel.messages.fetch(msg.id).then((msg) => {
+            msg.delete();
+          });
         }, 10000)
       );
     } else {
